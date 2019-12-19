@@ -1,0 +1,97 @@
+body {
+  background-color: #212121;
+  /* -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none; */
+  /* user-select: none; */
+}
+.scoring {
+  height: 60px;
+  width: 300px;
+}
+.game {
+  background-color: rgb(202, 201, 201);
+  border: 3px white solid;
+  border-bottom: 3px grey solid;
+  border-right: 3px grey solid;
+}
+.info-zone {
+  height: 60px;
+  margin: 10px;
+  margin-bottom: 10px;
+}
+.play-zone {
+  margin: 10px;
+}
+.shadow {
+  border: 2px grey solid;
+  border-bottom: 2px white solid;
+  border-right: 2px white solid;
+}
+.field {
+  width: 30px;
+  height: 30px;
+  border: 3px grey solid;
+  border-top: 2px white solid;
+  border-left: 2px white solid;
+}
+.digged {
+  border: 1px grey solid;
+  background-color: rgb(180, 180, 180);
+}
+.boom {
+  display: flex;
+  font-size: 18px;
+  background-color: red;
+}
+.reset {
+  font-size: 24px;
+  width: 42px;
+  height: 42px;
+  border: 4px grey solid;
+  border-top: 2px white solid;
+  border-left: 2px white solid;
+}
+
+.reset-click {
+  border: 4px grey solid;
+  border-bottom: 2px grey solid;
+  border-right: 2px grey solid;
+}
+.info {
+  font-size: 26px;
+  height: 40px;
+  width: 80px;
+  background-color: black;
+  color: red;
+}
+.error-flag {
+  border: 2px red solid;
+}
+
+.number-1-color {
+  color: #0d47a1;
+}
+.number-2-color {
+  color: #1b5e20;
+}
+.number-3-color {
+  color: #c62828;
+}
+.number-4-color {
+  color: #1a237e;
+}
+.number-5-color {
+  color: #33691e;
+}
+.number-6-color {
+  color: #bf360c;
+}
+.number-7-color {
+  color: #4db6ac;
+}
+.number-8-color {
+  color: #ffc107;
+}

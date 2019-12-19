@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Minesweeper</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+      integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"
+      integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Calistoga&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="modal-custom"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4>Custom:</h4>
+            :
+          </div>
+          <div class="modal-body">
+            <div>
+              <div>
+                <label id="size-range">Size(8~20):</label>
+                <label id="size-value">15</label>
+                <input
+                  type="range"
+                  class="custom-range"
+                  value="15"
+                  min="8"
+                  max="20"
+                  id="size-input"
+                />
+              </div>
+              <div>
+                <label id="mines-range">Mines(1~64):</label>
+                <label id="mines-value">30</label>
+                <input
+                  type="range"
+                  class="custom-range"
+                  value="30"
+                  min="1"
+                  max="200"
+                  id="mines-input"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a
+              id="custom-newGame"
+              type="button"
+              class="btn btn-dark text-white"
+              data-dismiss="modal"
+              >New Game</a
+            >
+            <a
+              type="button"
+              class="btn btn-dark text-white"
+              data-dismiss="modal"
+              >Close</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      id="modal-record"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h4>Records Of Normal Game:</h4>
+            <table class="table text-center">
+              <theader>
+                <th>#</th>
+                <th>Time(sec)</th>
+              </theader>
+              <tbody id="records-tbody">
+                <tr>
+                  <td>1</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <a
+              type="button"
+              class="btn btn-dark text-white"
+              data-dismiss="modal"
+              >Close</a
+            >
+            <a
+              id="clearBtn"
+              type="button"
+              class="btn btn-danger text-white"
+              data-dismiss="modal"
+              >Clear Record</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- game -->
+    <div class="d-flex flex-column align-items-center">
+      <div id="type-option" class="d-flex justify-content-around my-3">
+        <a
+          id="recordBtn"
+          class="btn py-2 px-3 mx-2 game font-weight-bold"
+          data-toggle="modal"
+          data-target="#modal-record"
+          >Record</a
+        >
+        <a id="normalBtn" class="btn py-2 px-3 mx-2 game font-weight-bold"
+          >Normal</a
+        >
+        <a
+          id="customBtn"
+          class="btn py-2 px-3 mx-2 game font-weight-bold"
+          data-toggle="modal"
+          data-target="#modal-custom"
+          >Custom</a
+        >
+      </div>
+      <div class="game">
+        <div
+          class="info-zone shadow d-flex justify-content-around align-items-center"
+        >
+          <input
+            id="flag-counter"
+            type="text"
+            readonly
+            class="info text-center font-weight-bold"
+            value="000"
+          />
+          <div class="reset text-center">
+            <div id="face">🙂</div>
+          </div>
+          <input
+            id="timer"
+            type="text"
+            readonly
+            class="info text-center font-weight-bold"
+            value="000"
+          />
+        </div>
+        <div class="play-zone shadow">
+          <!-- 第一列 -->
+          <div class="d-flex">
+            <!-- 第一格 -->
+            <div data-index="0" class="field "></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+      integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+      crossorigin="anonymous"
+    ></script>
+    <script src="main.js"></script>
+  </body>
+</html>
